@@ -23,6 +23,7 @@ define arbitrary_dpkg( $package, $version, $subdir, $deps) {
 class rubygems {
 class install {
   include $operatingsystem
+  $version = '1.3.7-2'
 
   class ubuntu { 
 
@@ -67,13 +68,13 @@ PATH=${PATH}:${GEM_HOME}/bin
   }
   arbitrary_dpkg {"another gem ": 
     package => "rubygems1.8", 
-    version => "1.3.5-1ubuntu2_all", 
+    version => $version,
     subdir => "libg/libgems-ruby", 
     deps => [Package["ruby1.8"],Package["rdoc1.8"]]}
 
   arbitrary_dpkg {"a gem ": 
     package => "rubygems", 
-    version => "1.3.5-1ubuntu2_all",
+    version => $version,
     subdir => "libg/libgems-ruby",
     deps => Package['rubygems1.8']}
 
